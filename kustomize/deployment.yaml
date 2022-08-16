@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backstage
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: backstage
+  template:
+    metadata:
+      labels:
+        app: backstage
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: postgres-settings
+        - secretRef:
+            name: postgres-secrets
+        - secretRef:
+            name: backstage-secrets
+        image: ghcr.io/boxboat/speedboat-backstage:latest
+        imagePullPolicy: IfNotPresent
+        name: backstage
+        ports:
+        - containerPort: 7007
+          name: http
+          protocol: TCP
+      imagePullSecrets:
+      - name: pullsecret

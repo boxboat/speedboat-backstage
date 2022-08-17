@@ -5,5 +5,3 @@ commonAnnotations:
 resources:
   - ./deployment.yaml
   - ./service.yaml
-  - ./backstage-secrets.yaml
-  - ./postgres-settings.yaml

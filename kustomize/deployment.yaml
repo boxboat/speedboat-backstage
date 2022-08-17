@@ -14,7 +14,7 @@ spec:
         app: backstage
     spec:
       containers:
-        image: ghcr.io/boxboat/speedboat-backstage:latest
+      - image: ghcr.io/boxboat/speedboat-backstage:latest
         imagePullPolicy: IfNotPresent
         name: backstage
         ports:
